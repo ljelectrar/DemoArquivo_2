@@ -7,12 +7,8 @@ public class Main {
 
         String path = "C:\\Users\\ljele\\IdeaProjects\\in.txt";
 
-        FileReader fr = null;
-        BufferedReader br = null;
+        try (BufferedReader br = new BufferedReader(new FileReader(path))){
 
-        try {
-            fr = new FileReader(path);
-            br = new BufferedReader(fr);
             String line = br.readLine();
 
             while (line != null){
@@ -21,20 +17,6 @@ public class Main {
             }
         } catch (IOException e){
             System.out.println("ERROR: " + e.getMessage());
-        } finally {
-            
-            try {
-                if (br != null) {
-                    br.close();
-                }
-
-                if (fr != null) {
-                    fr.close();
-                }
-            } catch (IOException e){
-                e.printStackTrace();
-            }
         }
-
     }
 }
